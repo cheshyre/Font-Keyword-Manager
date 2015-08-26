@@ -21,7 +21,8 @@ class Manager:
         for word in keywords:
             if word in self.keywords[0]:
                 index = self.keywords[0].index(word)
-                self.keywords[index + 1].append(font)
+                if font not in self.keywords[index + 1]:
+                    self.keywords[index + 1].append(font)
             else:
                 self.keywords[0].append(word)
                 self.keywords.append([font])
