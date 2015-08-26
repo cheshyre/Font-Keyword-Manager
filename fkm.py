@@ -134,7 +134,7 @@ if _platform == 'linux' or _platform == 'linux2' or _platform == 'darwin':
     path = os.getenv('HOME')
 elif _platform == 'win32':
     path = os.getenv('APPDATA')
-    path = os.path.join(path, 'Roaming')
+    #path = os.path.join(path, 'Roaming')
 else:
     path = ''
 
