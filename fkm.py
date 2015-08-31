@@ -105,7 +105,7 @@ import argparse
 from sys import platform as _platform
 import os
 import os.path
-import pickle
+import json
 
 parser = argparse.ArgumentParser(description='Simple font manager using keywords.')
 subparsers = parser.add_subparsers(dest='subparser', help='valid commands')
@@ -134,18 +134,19 @@ if _platform == 'linux' or _platform == 'linux2' or _platform == 'darwin':
     path = os.getenv('HOME')
 elif _platform == 'win32':
     path = os.getenv('APPDATA')
-    #path = os.path.join(path, 'Roaming')
 else:
     path = ''
 
 path = os.path.join(path, '.font_keyword_manager')
 if not os.path.exists(path):
     os.makedirs(path)
-path = os.path.join(path, 'font_manager.data')
+path = os.path.join(path, 'data.json')
 
 if os.path.isfile(path):
-    with open(path, 'rb') as f:
-        data = pickle.load(f)
+    f = open(path, 'rb')
+    data = f.read().decode('utf-8')
+    data = json.loads(data)
+    f.close()
     manager = Manager(data)
 else:
     manager = Manager()
@@ -167,5 +168,7 @@ elif args.subparser == 'remove':
     manager.remove(args.font, args.keyword)
 
 data = manager.get_list_form()
-with open(path, 'wb') as f:
-    pickle.dump(data, f)
+f = open(path, 'wb')
+data = json.dumps(data)
+f.write(data.encode('utf-8'))
+f.close()

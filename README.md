@@ -1,5 +1,5 @@
 # Font-Keyword-Manager
-This is a simple font management command line utility to associate fonts with keywords, so that later you can search for fonts based on a set of keywords. It works with both Python 2 and Python 3 but, because of how the data is saved (using pickle), Python 2 cannot read any data written by Python 3.
+This is a simple font management command line utility to associate fonts with keywords, so that later you can search for fonts based on a set of keywords. It works with both Python 2 and Python 3. Data is stored in the form of a JSON array, so theoretically it could be usable by other utilities.
 
 ## Setup
 No installation necessary. You may want to add whatever directory you save it in to your PATH for ease of use.
@@ -49,14 +49,15 @@ python fkm.py list -f
 python fkm.py list -k
 ```
 
-If you would like to reset it completely, you just need to delete the .data file.
+If you would like to reset it completely, you just need to delete the data.json file.
+
 Linux and OSX:
 ```
-~/.font_keyword_manager/font_manager.data
+~/.font_keyword_manager/data.json
 ```
 Windows:
 ```
-%appdata%\.font_keyword_manager\font_manager.data
+%appdata%\.font_keyword_manager\data.json
 ```
 
 ## Feedback/Bug Reporting

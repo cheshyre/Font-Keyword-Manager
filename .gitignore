@@ -41,3 +41,7 @@ Thumbs.db
 ###############################
 *.todo
 *.note
+
+# PyCharm Being Special #
+#########################
+.idea
